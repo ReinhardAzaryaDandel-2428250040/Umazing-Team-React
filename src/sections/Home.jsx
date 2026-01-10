@@ -1,11 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import heroImg from "../assets/hero1.png";
 
-console.log("DEBUG heroImg path ->", heroImg);
-
 export default function Home() {
-  // === AMBIL NAMA USER (SAMA SEPERTI NAVBAR) ===
+  const navigate = useNavigate();
+
+  // === AMBIL NAMA USER ===
   const userName = localStorage.getItem("user_name");
 
   return (
@@ -59,34 +60,33 @@ export default function Home() {
             font-extrabold mt-4 mb-4 drop-shadow-lg
             text-[#fde68a]"
           >
-            Selamat Datang <span className="text-[#f5d0fe]">{userName || "User"}</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-500"> Di Umazing Team</span>
+            Selamat Datang <span className="text-[#f5d0fe]">{userName || "User"}</span> <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-500">Di Umazing Team</span>
           </h1>
 
           <p className="text-lg md:text-xl mb-6 text-[#e9d5ff] drop-shadow-md">“Bukan sekadar menebak — Umazing Team menganalisis Jenis Kuda dengan pendekatan cerdas.”</p>
 
+          {/* ===== BUTTON ACTION ===== */}
           <div className="flex items-center justify-center md:justify-start gap-4">
-            <a href="#character">
-              <motion.button
-                whileHover={{ scale: 1.08 }}
-                className="px-6 py-3 rounded-full
-                bg-gradient-to-r from-pink-500 to-purple-600
-                text-[#fff6ff] font-semibold shadow-xl"
-              >
-                Explore Characters
-              </motion.button>
-            </a>
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              onClick={() => navigate("/character")}
+              className="px-6 py-3 rounded-full
+              bg-gradient-to-r from-pink-500 to-purple-600
+              text-[#fff6ff] font-semibold shadow-xl"
+            >
+              Explore Characters
+            </motion.button>
 
-            <a href="#predict">
-              <motion.button
-                whileHover={{ scale: 1.08 }}
-                className="px-6 py-3 rounded-full
-                border border-white/40
-                text-[#f5d0fe] font-semibold
-                backdrop-blur-md"
-              >
-                Try Prediction
-              </motion.button>
-            </a>
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              onClick={() => navigate("/predict")}
+              className="px-6 py-3 rounded-full
+              border border-white/40
+              text-[#f5d0fe] font-semibold
+              backdrop-blur-md"
+            >
+              Try Prediction
+            </motion.button>
           </div>
         </div>
 
@@ -101,7 +101,6 @@ export default function Home() {
 
             <motion.img src={heroImg} alt="Umazing Hero" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} className="relative mx-auto h-full object-cover rounded-3xl" />
 
-            {/* === GLOW RING === */}
             <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1.15, opacity: 0.25 }}

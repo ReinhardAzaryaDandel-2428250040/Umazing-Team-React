@@ -14,8 +14,7 @@ export default function Navbar() {
     localStorage.removeItem("user_name");
     localStorage.removeItem("is_admin");
     setIsAuth(false);
-    navigate("/login");
-    window.location.reload();
+    navigate("/login", { replace: true });
   }
 
   return (
